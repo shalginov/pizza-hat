@@ -1,25 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { useState } from "react";
+import { PizzaConfigurator } from "./PizzaConfigurator";
+import { PizzaOrderCheckouter } from "./PizzaOrderCheckouter";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [isConfiguringPizza, setIsConfiguringPizza] = useState(true);
+  const [order, setOrder] = useState({})
+
+  if (isConfiguringPizza) return <PizzaConfigurator setOrder={setOrder} setIsConfiguringPizza={setIsConfiguringPizza} />;
+  if (!isConfiguringPizza) return <PizzaOrderCheckouter order={order} setIsConfiguringPizza={setIsConfiguringPizza} />;
 }
 
 export default App;
