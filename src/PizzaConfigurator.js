@@ -1,36 +1,34 @@
-import { useState } from "react"
+import { useEffect, useRef, useState, createRef } from "react"
+const BASEPRICE = 200;
+const SIZEADDTOPRICE = 50;
+const TOPPINGADDTOPRICE = 39;
 
-export const PizzaConfigurator = ({ setIsConfiguringPizza, orderProp: { order, setOrder },
-     constProps: { BASEPRICE, SIZEADDTOPRICE, TOPPINGADDTOPRICE } }) => {
+export const PizzaConfigurator = ({ setIsConfiguringPizza, orderProps: { order, setOrder }, funcFromApp }) => {
     const [price, setPrice] = useState(BASEPRICE)
+
     const onSubmitHandler = (event) => {
         event.preventDefault()
         setIsConfiguringPizza(prev => !prev)
-        const form = event.target
-        console.log("size ", form.size);
-        if (form.size.valu == 35) setPrice(prev => prev + 50)
-
+        funcFromApp(price)
     }
 
     const onChangeIput = (name, value) => {
         setOrder(prev => {
             return { ...prev, [name]: value }
         })
-        console.log("order:", order);
         changePrice()
     }
 
     const changePrice = () => {
         let newPrice = BASEPRICE;
         Object.values(order).map(value => {
-            console.log("value", value);
-            if(value==35) newPrice += SIZEADDTOPRICE
-            newPrice += TOPPINGADDTOPRICE
+            value === "35" ? newPrice += SIZEADDTOPRICE : newPrice += TOPPINGADDTOPRICE
+            if (value === "30") newPrice -= TOPPINGADDTOPRICE
         })
         setPrice(newPrice)
     }
 
-    return <form onSubmit={onSubmitHandler} onChange={(e) => onChangeIput(e.target.name, e.target.value)}>
+    return <form onSubmit={onSubmitHandler} onInput={(event) => onChangeIput(event.target.name, event.target.value)}>
         <fieldset>
             <legend>Configure your pizza</legend>
             <legend>Pizza size</legend>
