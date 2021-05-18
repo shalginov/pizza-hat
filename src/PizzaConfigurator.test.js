@@ -15,4 +15,13 @@ describe("PizzaConfigurator", () => {
         expect(getByText(/Configure your pizza/)).toBeInTheDocument
         expect(someFunc).toHaveBeenCalled()        
     })
+    it("calls handler on change input", () => {
+        const handleInput = jest.fn()
+        const {getByDisplayValue} = render(<PizzaConfigurator pizzaSetter={handleInput} pizza={{}}/>)
+        const sizeInput = getByDisplayValue("30")
+        // fireEvent.change(sizeInput, {target: {value: 30}})
+        fireEvent.click(sizeInput)
+        expect(handleInput).toHaveBeenCalled()
+    })
+
 })
