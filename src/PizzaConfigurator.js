@@ -3,37 +3,34 @@ const BASEPRICE = 200;
 const SIZEADDTOPRICE = 50;
 const TOPPINGADDTOPRICE = 39;
 
-export const PizzaConfigurator = ({ setIsConfiguringPizza, orderProps: { order, setOrder }, funcFromApp }) => {
-    const [price, setPrice] = useState(BASEPRICE)
+export const calculatePrice = (pizza) => {
+    let newPrice = BASEPRICE;
+    Object.values(pizza).map(value => {
+        value === "35" ? newPrice += SIZEADDTOPRICE : newPrice += TOPPINGADDTOPRICE
+        if (value === "30") newPrice -= TOPPINGADDTOPRICE
+    })
+    return newPrice
+}
 
+
+export const PizzaConfigurator = (pizzaSetter) => {
+    const setPizza = pizzaSetter.setPizza
     const onSubmitHandler = (event) => {
         event.preventDefault()
-        setIsConfiguringPizza(prev => !prev)
-        funcFromApp(price)
     }
 
-    const onChangeIput = (name, value) => {
-        setOrder(prev => {
-            return { ...prev, [name]: value }
-        })
-        changePrice()
+    console.log("pizzaSetter:", pizzaSetter);
+
+    const handlerChangeInput = (name, value) => {
+        setPizza(name, value)
     }
 
-    const changePrice = () => {
-        let newPrice = BASEPRICE;
-        Object.values(order).map(value => {
-            value === "35" ? newPrice += SIZEADDTOPRICE : newPrice += TOPPINGADDTOPRICE
-            if (value === "30") newPrice -= TOPPINGADDTOPRICE
-        })
-        setPrice(newPrice)
-    }
-
-    return <form onSubmit={onSubmitHandler} onInput={(event) => onChangeIput(event.target.name, event.target.value)}>
+    return <form onSubmit={onSubmitHandler}>
         <fieldset>
             <legend>Configure your pizza</legend>
             <legend>Pizza size</legend>
-            <label><input name="size" type="radio" value="30" />30</label>
-            <label><input name="size" type="radio" value="35" />35</label>
+            <label><input onChange={event => handlerChangeInput(event.target.name, event.target.value)} name="size" type="radio" value="30" />30</label>
+            <label><input onChange={event => handlerChangeInput(event.target.name, event.target.value)} name="size" type="radio" value="35" />35</label>
             <legend>Dough</legend>
             <label><input name="dough" type="radio" value="thick" />thick</label>
             <label><input name="dough" type="radio" value="fat" />fat</label>
@@ -46,7 +43,7 @@ export const PizzaConfigurator = ({ setIsConfiguringPizza, orderProps: { order, 
             <label><input name="cheese" type="radio" value="chedder" />chedder</label>
             <label><input name="cheese" type="radio" value="dorblu" />dorblu</label>
             <legend>Vegetables</legend>s
-                <label><input name="vegetables" type="radio" value="tomato" />tomato</label>
+            <label><input name="vegetables" type="radio" value="tomato" />tomato</label>
             <label><input name="vegetables" type="radio" value="mushrooms" />mushrooms</label>
             <label><input name="vegetables" type="radio" value="pepper" />pepper</label>
             <legend>Meat</legend>
@@ -54,6 +51,6 @@ export const PizzaConfigurator = ({ setIsConfiguringPizza, orderProps: { order, 
             <label><input name="meat" type="radio" value="peperoni" />peperoni</label>
             <label><input name="meat" type="radio" value="ham" />ham</label>
         </fieldset>
-        <button type="submit">Order for: {price}$</button>
+        <button type="submit">Order for: </button>
     </form>
 }

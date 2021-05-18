@@ -1,18 +1,16 @@
 import { useState } from "react";
 import { PizzaConfigurator } from "./PizzaConfigurator";
-import { PizzaOrderCheckouter } from "./PizzaOrderCheckouter";
+import { PizzaCheckouter } from "./PizzaCheckouter";
 
 function App() {
-  const [isConfiguringPizza, setIsConfiguringPizza] = useState(true);
-  const [order, setOrder] = useState({})
-  const [price, setPrice] = useState(0)
+  const [pizzaConfig, setPizzaConfig] = useState({})
 
-  const transferFunc = (dataFromPizzaConfigurator) => {
-    setPrice(dataFromPizzaConfigurator)
+  const setPizza = (name, value) => {
+    setPizzaConfig( {...pizzaConfig, [name]: value } )
   }
 
-  if (isConfiguringPizza) return <PizzaConfigurator funcFromApp={transferFunc} orderProps={{ order, setOrder }} setIsConfiguringPizza={setIsConfiguringPizza} />;
-  if (!isConfiguringPizza) return <PizzaOrderCheckouter orderProps={order} priceProps={price} setIsConfiguringPizza={setIsConfiguringPizza} />;
+  if (true) return <PizzaConfigurator  pizzaSetter={setPizza}  />;
+   return <PizzaCheckouter pizza={pizzaConfig} />;
 }
 
 export default App;
