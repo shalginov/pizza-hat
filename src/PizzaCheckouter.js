@@ -1,4 +1,4 @@
-export const PizzaCheckouter = (pizza) => {
+export const PizzaCheckouter = ({pizza}) => {
     return <div>
         <fieldset>
             <legend>Check out your pizza</legend>

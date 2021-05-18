@@ -4,13 +4,18 @@ import { PizzaCheckouter } from "./PizzaCheckouter";
 
 function App() {
   const [pizzaConfig, setPizzaConfig] = useState({})
+  const [submitted, setSubmitted] = useState(false)
 
-  const setPizza = (name, value) => {
-    setPizzaConfig( {...pizzaConfig, [name]: value } )
+  const setPizza = (prop) => {
+    setPizzaConfig( {...pizzaConfig, ...prop } )
   }
 
-  if (true) return <PizzaConfigurator  pizzaSetter={setPizza}  />;
-   return <PizzaCheckouter pizza={pizzaConfig} />;
+  const setterSubmitted = () => {
+    setSubmitted(true)
+  }
+
+  if (submitted) return <PizzaCheckouter pizza={pizzaConfig} />;
+   return <PizzaConfigurator pizzaSetter={setPizza} pizza={pizzaConfig} handlerSubmitted={setterSubmitted}  />;
 }
 
 export default App;
