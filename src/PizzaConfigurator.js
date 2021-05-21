@@ -24,6 +24,7 @@ export const PizzaConfigurator = ({ setIsConfiguringPizza, orderProps: { order, 
         Object.values(order).map(value => {
             value === "35" ? newPrice += SIZEADDTOPRICE : newPrice += TOPPINGADDTOPRICE
             if (value === "30") newPrice -= TOPPINGADDTOPRICE
+            return 0
         })
         setPrice(newPrice)
     }
