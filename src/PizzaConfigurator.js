@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, createRef } from "react"
+import { useState } from "react"
 const BASEPRICE = 200;
 const SIZEADDTOPRICE = 50;
 const TOPPINGADDTOPRICE = 39;
