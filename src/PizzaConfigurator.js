@@ -30,6 +30,7 @@ export const PizzaConfigurator = ({pizzaSetter, pizza, handlerSubmitted}) => {
     return <form onSubmit={onSubmitHandler}>
         <fieldset>
             <legend>Configure your pizza</legend>
+            <h2>STAGING</h2>
             <legend>Pizza size</legend>
             <label><input onChange={event => handlerChangeInput(event.target.name, event.target.value)} name="size" type="radio" value="30" />30</label>
             <label><input onChange={event => handlerChangeInput(event.target.name, event.target.value)} name="size" type="radio" value="35" />35</label>
