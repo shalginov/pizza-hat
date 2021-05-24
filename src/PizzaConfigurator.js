@@ -1,4 +1,3 @@
-import { useState } from "react"
 
 export const calculatePrice = (pizza) => {
     const BASEPRICE = 200;
