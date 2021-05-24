@@ -15,7 +15,10 @@ function App() {
   }
 
   if (submitted) return <PizzaCheckouter pizza={pizzaConfig} />;
-   return <PizzaConfigurator pizzaSetter={setPizza} pizza={pizzaConfig} handlerSubmitted={setterSubmitted}  />;
+   return <div>
+    <PizzaConfigurator pizzaSetter={setPizza} pizza={pizzaConfig} handlerSubmitted={setterSubmitted}  />;
+    <button onClick={()=> {throw new Error("Something went wrong")}}>Break the world</button>;
+   </div>
 }
 
 export default App;
