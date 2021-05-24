@@ -8,6 +8,7 @@ export const calculatePrice = (pizza) => {
     Object.values(pizza).map(value => {
         value === "35" ? newPrice += SIZEADDTOPRICE : newPrice += TOPPINGADDTOPRICE
         if (value === "30") newPrice -= TOPPINGADDTOPRICE
+        return 0
     })
     return newPrice
 }
