@@ -1,3 +1,4 @@
+import { useState } from "react"
 
 export const calculatePrice = (pizza) => {
     const BASEPRICE = 200;
@@ -23,6 +24,14 @@ export const PizzaConfigurator = ({pizzaSetter, pizza, handlerSubmitted}) => {
 
     const handlerChangeInput = (name, value) => {
         pizzaSetter({[name]: value})
+    const changePrice = () => {
+        let newPrice = BASEPRICE;
+        Object.values(order).map(value => {
+            value === "35" ? newPrice += SIZEADDTOPRICE : newPrice += TOPPINGADDTOPRICE
+            if (value === "30") newPrice -= TOPPINGADDTOPRICE
+            return 0
+        })
+        setPrice(newPrice)
     }
 
 
