@@ -1,6 +1,8 @@
+import { usePizzaContext } from "./PizzaContext"
 import {calculatePrice} from "./shared/utils"
 
-export const PizzaCheckouter = ({pizza}) => {
+export const PizzaCheckouter = () => {
+    const {pizza} = usePizzaContext()
     return <div>
         <fieldset>
             <legend>Check out your pizza</legend>
