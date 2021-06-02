@@ -10,8 +10,7 @@ function App() {
   const {home, login, registration, pizzaCheckouter, pizzaConfigurator} = NAVURLS
   
 
-   return <div>
-  <Switch>
+   return <Switch>
       <Route exact path={home}>
         <PizzaConfigurator></PizzaConfigurator>
       </Route>
@@ -30,10 +29,7 @@ function App() {
       <Route>
         <PageNotFound></PageNotFound>
       </Route>
-    </Switch>  
-    <button onClick={()=> {throw new Error("Something went wrong")}}>Break the world</button>;
-   </div>
-
+  </Switch>  
 }
 
 export default App;
