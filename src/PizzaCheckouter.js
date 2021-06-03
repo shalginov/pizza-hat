@@ -1,6 +1,8 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 import { usePizzaContext } from "./PizzaContext"
 import { calculatePrice, DELIVERYCOST } from "./shared/utils"
+import { NAVURLS } from "./shared/nav"
 
 export const PizzaCheckouter = () => {
     const {pizza} = usePizzaContext()
@@ -17,8 +19,6 @@ export const PizzaCheckouter = () => {
         const {name, value} = event.target
         setOrder({...order, [name]: value})
     }
-
-    console.log("order:", order);
 
     return <div>
         <fieldset>
@@ -48,7 +48,7 @@ export const PizzaCheckouter = () => {
                     Flat:<input name="flat" value={flat}></input>
                 </label>
                 <label>
-                    <input name="payMethod" type="radio" value="card"/> Visa/MC
+                    <input name="payMethod" type="radio" value="card" checked={payMethod === "card" || payMethod === ""}/> Visa/MC
                 </label>
                 <label>
                     <input name="payMethod" type="radio" value="cash"/> Cash
@@ -57,7 +57,9 @@ export const PizzaCheckouter = () => {
             <fieldset>
                 <p>Pizza {calculatePrice(pizza)}</p>
                 <p>Delivery {DELIVERYCOST}</p>
-                <button>Pay: {DELIVERYCOST + calculatePrice(pizza)}</button>
+                <Link to={NAVURLS.pizzaOrder}>
+                    <button>Pay: {DELIVERYCOST + calculatePrice(pizza)}</button>
+                </Link>
             </fieldset>
         </form>
     </div>

@@ -3,11 +3,12 @@ import { PizzaConfigurator } from "./PizzaConfigurator";
 import { PizzaCheckouter } from "./PizzaCheckouter";
 import { FormAuth } from "./FormAuth"
 import { FormRegistration } from "./FormRegistrartion"
+import { PizzaOrder } from "./PizzaOrder"
 import { PageNotFound } from "./PageNotFound"
 import { NAVURLS } from "./shared/nav"
 
 function App() {
-  const {home, login, registration, pizzaCheckouter, pizzaConfigurator} = NAVURLS
+  const {home, login, registration, pizzaCheckouter, pizzaConfigurator, pizzaOrder} = NAVURLS
   
 
    return <Switch>
@@ -25,6 +26,9 @@ function App() {
       </Route>
       <Route path={pizzaCheckouter}>
         <PizzaCheckouter></PizzaCheckouter>
+      </Route>
+      <Route path={pizzaOrder}>
+        <PizzaOrder></PizzaOrder>
       </Route>
       <Route>
         <PageNotFound></PageNotFound>

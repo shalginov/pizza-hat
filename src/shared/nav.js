@@ -4,4 +4,5 @@ export const NAVURLS = {
     login: "/login",
     pizzaConfigurator: "/pizza-configurator",
     pizzaCheckouter: "/pizza-checkouter",
+    pizzaOrder: "/pizza-order",
 }
