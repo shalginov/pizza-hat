@@ -1,20 +1,17 @@
-import { useState } from "react"
 import {calculatePrice} from "./shared/utils"
+import { Link } from "react-router-dom"
+import { NAVURLS }  from "./shared/nav"
+import { usePizzaContext } from "./PizzaContext"
 
-export const PizzaConfigurator = ({submitPizzaConfig}) => {
-    const [pizzaConfig, setPizzaConfig] = useState({})
-
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        submitPizzaConfig(pizzaConfig)
-    }
+export const PizzaConfigurator = () => {
+    const { pizza, setPizza } = usePizzaContext()
 
     const handleChange = (event) => {
         const pizzaConfigPart = {[event.target.name]: event.target.value}
-        setPizzaConfig({...pizzaConfig, ...pizzaConfigPart})        
+        setPizza({...pizza, ...pizzaConfigPart})        
     }
 
-    return <form onSubmit={handleSubmit}>
+    return <form>
         <fieldset>
             <legend>Configure your pizza</legend>
             <h2>STAGING</h2>
@@ -41,6 +38,8 @@ export const PizzaConfigurator = ({submitPizzaConfig}) => {
             <label><input onChange={handleChange} name="meat" type="radio" value="peperoni" />peperoni</label>
             <label><input onChange={handleChange} name="meat" type="radio" value="ham" />ham</label>
         </fieldset>
-        <button type="submit">Order for: {calculatePrice(pizzaConfig)}$</button>
+        <Link to={NAVURLS.pizzaCheckouter}>
+            <button>Order for: {calculatePrice(pizza)}$</button>
+        </Link>
     </form>
 }

@@ -1,3 +1,5 @@
+export const DELIVERYCOST = 180;
+
 export const calculatePrice = (pizza) => {
     const BASEPRICE = 200;
     const SIZEADDTOPRICE = 50;
