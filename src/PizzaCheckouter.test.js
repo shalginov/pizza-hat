@@ -5,10 +5,7 @@ it.todo("unit test PizzaCheckouter component")
 
 describe("PizzaCheckouter", ()=>{
     it("renders PizzaCheckouter", ()=> {
-        //Arrange
-        //Act
         const {getByText} = render(<PizzaCheckouter pizza={{}}/>)
-        //Assert
         expect(getByText(/Check out your pizza/)).toBeInTheDocument()
     })
 })

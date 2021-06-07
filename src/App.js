@@ -3,19 +3,17 @@ import { PizzaConfigurator } from "./PizzaConfigurator";
 import { PizzaCheckouter } from "./PizzaCheckouter";
 
 function App() {
-  const [pizzaConfig, setPizzaConfig] = useState({})
-  const [submitted, setSubmitted] = useState(false)
+  const [configuredPizza, setConfiguredPizza] = useState()
 
-  const setPizza = (prop) => {
-    setPizzaConfig( {...pizzaConfig, ...prop } )
+  const configPizza = (pizza) => {
+    setConfiguredPizza(pizza)
   }
 
-  const setterSubmitted = () => {
-    setSubmitted(true)
-  }
-
-  if (submitted) return <PizzaCheckouter pizza={pizzaConfig} />;
-   return <PizzaConfigurator pizzaSetter={setPizza} pizza={pizzaConfig} handlerSubmitted={setterSubmitted}  />;
+  if (configuredPizza) return <PizzaCheckouter pizza={configuredPizza} />;
+   return <div>
+    <PizzaConfigurator submitPizzaConfig={configPizza}  />;
+    <button onClick={()=> {throw new Error("Something went wrong")}}>Break the world</button>;
+   </div>
 }
 
 export default App;

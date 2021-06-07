@@ -5,18 +5,24 @@ it.todo("Integration test of App");
 
 describe("App", ()=>{
   test("user can configure the pizza and preview the order", ()=>{
-    //Arrange
-    //Act
     const {getByText} = render(<App/>)
     const pizzaConfigurator = getByText("Configure your pizza")
-    //Assert
     expect(pizzaConfigurator).toBeInTheDocument()
-    //Arrange
     const submitButton = getByText(/Order for:/)
-    //Act
-    fireEvent.submit(submitButton)
+    fireEvent.click(submitButton)
     const pizzaCheckout = getByText("Check out your pizza")
-    //Assert
     expect(pizzaCheckout).toBeInTheDocument
   })
+
+  it("renders user input", () => {
+    const {getByDisplayValue, getByText} = render(<App/>)
+    const sizeInput = getByDisplayValue("30")
+    fireEvent.click(sizeInput)
+    const submitButton = getByText(/Order for:/)
+    fireEvent.click(submitButton)
+    const sizeRender = getByText("30")
+    expect(sizeRender).toBeInTheDocument
+
+  })
+
 })
