@@ -25,7 +25,7 @@ export const PizzaCheckouter = () => {
       <fieldset>
         <legend>Check out your pizza</legend>
         <ul>
-          {Object.entries(pizza).map((item) => {
+          {pizza && Object.entries(pizza).map((item) => {
             return (
               <li key={item[0]}>
                 <span style={{ fontWeight: "bolder" }}>{item[0]}: </span>

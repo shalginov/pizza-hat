@@ -33,7 +33,7 @@ export const FormRegistration = () => {
         </fieldset>
         <button>Register</button>
       </form>
-      <Link to={NAVURLS.login}>login</Link>
+      <Link to={NAVURLS.login} data-testid="login-link">login</Link>
     </div>
   );
 };

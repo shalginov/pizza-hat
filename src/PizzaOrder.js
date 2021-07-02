@@ -22,7 +22,7 @@ export const PizzaOrder = () => {
       <p>date, time</p>
       <fieldset>
         <legend>Your pizza</legend>
-        <p>{Object.values(pizza).map((item) => `${item} - `)}</p>
+        <p>{pizza && Object.values(pizza).map((item) => `${item} - `)}</p>
         <p>{calculatePrice(pizza)}$</p>
         <p style={{ fontWeight: "bolder" }}>card number</p>
         <p>delivered</p>
