@@ -20,7 +20,27 @@ export const PizzaCheckouter = () => {
         setOrder({...order, [name]: value})
     }
 
+<<<<<<< HEAD
+  return (
+    <div>
+      <fieldset>
+        <legend>Check out your pizza</legend>
+        <ul>
+          {pizza && Object.entries(pizza).map((item) => {
+            return (
+              <li key={item[0]}>
+                <span style={{ fontWeight: "bolder" }}>{item[0]}: </span>
+                <span>{item[1]}</span>
+              </li>
+            );
+          })}
+        </ul>
+        <p>Price: {calculatePrice(pizza)}</p>
+      </fieldset>
+      <form onChange={onAdressChange}>
+=======
     return <div>
+>>>>>>> parent of c263b14 (use prettier)
         <fieldset>
             <legend>Check out your pizza</legend>
             <ul>
