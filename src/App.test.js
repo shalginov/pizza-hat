@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 import { render, fireEvent } from "@testing-library/react";
 import { createMemoryHistory } from "history"
 import { Router } from "react-router-dom"
 import App from "./App";
+=======
+import { render, fireEvent } from '@testing-library/react';
+import App from './App';
+>>>>>>> parent of c263b14 (use prettier)
 
 const arrangeHistoryRouterWithApp = (history) => {
   return render(
@@ -11,6 +16,7 @@ const arrangeHistoryRouterWithApp = (history) => {
   )
 }
 
+<<<<<<< HEAD
 describe("App", () => {
   describe("on submit button push on pizza configurator page", () => {
     it("navigates to pizza checkouter page", () => {
@@ -62,3 +68,28 @@ describe("App", () => {
     })
   })
 });
+=======
+describe("App", ()=>{
+  test("user can configure the pizza and preview the order", ()=>{
+    const {getByText} = render(<App/>)
+    const pizzaConfigurator = getByText("Configure your pizza")
+    expect(pizzaConfigurator).toBeInTheDocument()
+    const submitButton = getByText(/Order for:/)
+    fireEvent.click(submitButton)
+    const pizzaCheckout = getByText("Check out your pizza")
+    expect(pizzaCheckout).toBeInTheDocument
+  })
+
+  it("renders user input", () => {
+    const {getByDisplayValue, getByText} = render(<App/>)
+    const sizeInput = getByDisplayValue("30")
+    fireEvent.click(sizeInput)
+    const submitButton = getByText(/Order for:/)
+    fireEvent.click(submitButton)
+    const sizeRender = getByText("30")
+    expect(sizeRender).toBeInTheDocument
+
+  })
+
+})
+>>>>>>> parent of c263b14 (use prettier)

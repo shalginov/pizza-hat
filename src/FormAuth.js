@@ -12,8 +12,8 @@ export const FormAuth = () => {
                 <legend>Authorization</legend>
                 <h4>Enter your login password</h4>
                 <label>
-                    login:
-                    <input
+                    login: 
+                    <input 
                         type="text"
                         placeholder="Your login"
                         name="login"
