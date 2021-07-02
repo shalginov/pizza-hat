@@ -1,14 +1,14 @@
-import {calculatePrice} from "./shared/utils"
+import { calculatePrice } from "./shared/utils"
 import { Link } from "react-router-dom"
-import { NAVURLS }  from "./shared/nav"
+import { NAVURLS } from "./shared/nav"
 import { usePizzaContext } from "./PizzaContext"
 
 export const PizzaConfigurator = () => {
     const { pizza, setPizza } = usePizzaContext()
 
     const handleChange = (event) => {
-        const pizzaConfigPart = {[event.target.name]: event.target.value}
-        setPizza({...pizza, ...pizzaConfigPart})        
+        const pizzaConfigPart = { [event.target.name]: event.target.value }
+        setPizza({ ...pizza, ...pizzaConfigPart })
     }
 
     return <form>
