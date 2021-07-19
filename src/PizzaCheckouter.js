@@ -2,7 +2,6 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import { usePizzaContext } from "./PizzaContext"
 import { calculatePrice, DELIVERYCOST } from "./shared/utils"
-import { NAVURLS } from "./shared/nav"
 
 export const PizzaCheckouter = () => {
     const { pizza } = usePizzaContext()
@@ -20,7 +19,6 @@ export const PizzaCheckouter = () => {
         setOrder({ ...order, [name]: value })
     }
 
-
     return (
         <div>
             <form onChange={onAdressChange}>
@@ -28,7 +26,7 @@ export const PizzaCheckouter = () => {
                     <legend>Check out your pizza</legend>
                     <ul>
                         {pizza && Object.entries(pizza).map((item) => {
-                            return <li key={item[0]}>
+                            return item[1] && <li key={item[0]}>
                                 <span style={{ fontWeight: "bolder" }}>{item[0]}: </span><span>{item[1]}</span>
                             </li>
                         })}
@@ -51,7 +49,7 @@ export const PizzaCheckouter = () => {
                             Flat:<input name="flat" value={flat}></input>
                         </label>
                         <label>
-                            <input name="payMethod" type="radio" value="card" checked={payMethod === "card" || payMethod === ""} /> Visa/MC
+                            <input name="payMethod" type="radio" value="card" defaultChecked={payMethod === "card" || payMethod === ""} /> Visa/MC
                         </label>
                         <label>
                             <input name="payMethod" type="radio" value="cash" /> Cash
@@ -60,7 +58,7 @@ export const PizzaCheckouter = () => {
                     <fieldset>
                         <p>Pizza {calculatePrice(pizza)}</p>
                         <p>Delivery {DELIVERYCOST}</p>
-                        <Link to={NAVURLS.pizzaOrder}>
+                        <Link to="/pizza-order">
                             <button>Pay: {DELIVERYCOST + calculatePrice(pizza)}</button>
                         </Link>
                     </fieldset>

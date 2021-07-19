@@ -5,6 +5,7 @@ import { FormAuth } from "./FormAuth";
 import { FormRegistration } from "./FormRegistrartion";
 import { PizzaOrder } from "./PizzaOrder";
 import { OrdersPage } from "./OrdersPage";
+import { FormCardPay } from "./FormCardPay"
 import { PageNotFound } from "./PageNotFound";
 
 function App() {
@@ -30,6 +31,9 @@ function App() {
       </Route>
       <Route path="/orders">
         <OrdersPage></OrdersPage>
+      </Route>
+      <Route path="/card-pay">
+        <FormCardPay></FormCardPay>
       </Route>
       <Route>
         <PageNotFound></PageNotFound>

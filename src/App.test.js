@@ -18,6 +18,7 @@ describe("App", () => {
       const { container, getByText } = arrangeHistoryRouterWithApp(history)
       expect(container.innerHTML).toMatch("Configure your pizza")
       fireEvent.click(getByText(/order for:/i))
+      history.push("/pizza-checkouter")
       expect(container.innerHTML).toMatch("Check out your pizza")
     })
   })
@@ -62,5 +63,3 @@ describe("App", () => {
     })
   })
 })
-
-

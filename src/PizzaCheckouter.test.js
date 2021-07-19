@@ -3,10 +3,12 @@ import { StaticRouter } from "react-router-dom"
 import { PizzaCheckouter } from "./PizzaCheckouter"
 
 describe("PizzaCheckouter", () => {
-    const { getByText } = render(
-        <StaticRouter>
-            <PizzaCheckouter />
-        </StaticRouter>
-    );
-    expect(getByText(/Check out your pizza/)).toBeInTheDocument();
+    it("Pizza chekouter renders correctly", () => {
+        const { getByText } = render(
+            <StaticRouter>
+                <PizzaCheckouter />
+            </StaticRouter>
+        );
+        expect(getByText(/Check out your pizza/i)).toBeInTheDocument();
+    })
 });

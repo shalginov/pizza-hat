@@ -1,23 +1,20 @@
-import { useState } from "react"
 import { Link } from "react-router-dom"
-import { NAVURLS } from "./shared/nav"
+import { useForm } from "react-hook-form"
 
 export const FormAuth = () => {
-    const [login, setLogin] = useState("")
-    const [pass, setPass] = useState("")
+    const { register, handleSubmit } = useForm()
 
     return <div>
-        <form>
+        <form onSubmit={handleSubmit(() => { })}>
             <fieldset>
                 <legend>Authorization</legend>
                 <h4>Enter your login password</h4>
                 <label>
-                    login: 
-                    <input 
+                    login:
+                    <input
                         type="text"
                         placeholder="Your login"
-                        name="login"
-                        value={login}>
+                        {...register("login")}>
                     </input>
                 </label>
                 <label>
@@ -25,13 +22,12 @@ export const FormAuth = () => {
                     <input
                         type="password"
                         placeholder="Your password"
-                        name="pass"
-                        value={pass}>
+                        {...register("pass")}>
                     </input>
                 </label>
             </fieldset>
             <button>Enter</button>
         </form>
-        <Link to={NAVURLS.registration}>Registration</Link>
+        <Link to="/registration">Registration</Link>
     </div>
 }
