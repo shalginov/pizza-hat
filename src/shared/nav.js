@@ -5,5 +5,6 @@ export const NAVURLS = {
     pizzaConfigurator: "/pizza-configurator",
     pizzaCheckouter: "/pizza-checkouter",
     pizzaOrder: "/pizza-order",
-    ordersPage: "/orders"
+    ordersPage: "/orders",
+    cardPay: "/card-pay",
 }

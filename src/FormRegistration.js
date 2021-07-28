@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form"
 
-export const FormRegistration = () => {
+export const FormRegistration = ({ formSubmit }) => {
     const { register, handleSubmit } = useForm()
 
+    const onSubmit = (data) => {
+        formSubmit(data)
+    }
+
     return <div>
-        <form onSubmit={handleSubmit(() => { })}>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <fieldset>
                 <legend>Registration</legend>
                 <h4>Enter your login password</h4>

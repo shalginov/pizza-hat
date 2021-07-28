@@ -1,8 +1,8 @@
 import { Route, Switch } from "react-router-dom";
 import { PizzaConfigurator } from "./PizzaConfigurator";
 import { PizzaCheckouter } from "./PizzaCheckouter";
-import { FormAuth } from "./FormAuth";
-import { FormRegistration } from "./FormRegistrartion";
+import { FormAuthentication } from "./FormAuthentication";
+import { FormRegistration } from "./FormRegistration";
 import { PizzaOrder } from "./PizzaOrder";
 import { OrdersPage } from "./OrdersPage";
 import { FormCardPay } from "./FormCardPay"
@@ -15,7 +15,7 @@ function App() {
         <PizzaConfigurator></PizzaConfigurator>
       </Route>
       <Route path="/login">
-        <FormAuth></FormAuth>
+        <FormAuthentication></FormAuthentication>
       </Route>
       <Route path="/registration">
         <FormRegistration></FormRegistration>
