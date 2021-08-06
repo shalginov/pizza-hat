@@ -1,16 +1,10 @@
-import { render, fireEvent, getByText } from "@testing-library/react"
-import { StaticRouter } from "react-router-dom"
+import { render, fireEvent } from "@testing-library/react"
 import { act } from "react-dom/test-utils"
-import { FormCardPay } from "./FormCardPay"
-import { get } from "react-hook-form"
+import { CardPayForm } from "./CardPayForm"
 
 describe("card pay form", () => {
     it("renders correctly", () => {
-        const { getByLabelText } = render(
-            <StaticRouter>
-                <FormCardPay />
-            </StaticRouter>
-        )
+        const { getByLabelText } = render(<CardPayForm />)
         expect(getByLabelText(/card number/i)).toBeInTheDocument
         expect(getByLabelText(/expiration date/i)).toBeInTheDocument
         expect(getByLabelText(/cvv security code/i)).toBeInTheDocument
@@ -21,11 +15,7 @@ describe("inputs data", () => {
     describe("validates values", () => {
         describe("with empty data", () => {
             it("shows error message", async () => {
-                const { getByText } = render(
-                    <StaticRouter>
-                        <FormCardPay />
-                    </StaticRouter>
-                )
+                const { getByText } = render(<CardPayForm />)
                 await act(async () => {
                     fireEvent.click(getByText("Pay"))
                 })
@@ -36,11 +26,7 @@ describe("inputs data", () => {
         })
         describe("with incomplete data", () => {
             it("shows error message", async () => {
-                const { getByText, getByLabelText } = render(
-                    <StaticRouter>
-                        <FormCardPay />
-                    </StaticRouter>
-                )
+                const { getByText, getByLabelText } = render(<CardPayForm />)
                 fireEvent.input(getByLabelText(/card number/i), { target: { value: "000" } })
                 fireEvent.input(getByLabelText(/expiration date/i), { target: { value: "01" } })
                 fireEvent.input(getByLabelText(/cvv security code/i), { target: { value: "12" } })
@@ -57,11 +43,7 @@ describe("inputs data", () => {
     })
     describe("normalaize values", () => {
         it("shows normalize values", () => {
-            const { getByLabelText, getByText } = render(
-                <StaticRouter>
-                    <FormCardPay />
-                </StaticRouter>
-            )
+            const { getByLabelText } = render(<CardPayForm />)
 
             const cardNumberInput = getByLabelText(/card number/i)
             const expirationDateInput = getByLabelText(/expiration date/i)
@@ -81,14 +63,11 @@ describe("inputs data", () => {
 
 describe("on submit", () => {
     it("collects iputs", async () => {
-        const formSubmit = jest.fn().mockImplementation((data) => data)
-        const { getByLabelText, getByText } = render(
-            <StaticRouter>
-                <FormCardPay formSubmit={formSubmit} />
-            </StaticRouter>
-        )
-        fireEvent.input(getByLabelText(/card number/i), { target: { value: "1234123412341234" } })
-        fireEvent.input(getByLabelText(/expiration date/i), { target: { value: "0101" } })
+        const formSubmit = jest.fn()
+        const { getByLabelText, getByText } = render(<CardPayForm formSubmit={formSubmit} />)
+
+        fireEvent.input(getByLabelText(/card number/i), { target: { value: "1234 1234 1234 1234" } })
+        fireEvent.input(getByLabelText(/expiration date/i), { target: { value: "01/01" } })
         fireEvent.input(getByLabelText(/cvv security code/i), { target: { value: "123" } })
 
         await act(async () => {

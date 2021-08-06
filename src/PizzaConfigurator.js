@@ -17,7 +17,7 @@ export const PizzaConfigurator = () => {
         history.push("/pizza-checkouter")
     }
 
-    return <form onSubmit={handleSubmit(onSubmitHandler)}>
+    return <form onSubmit={onSubmitHandler}>
         <fieldset>
             <legend>Configure your pizza</legend>
             <h2>STAGING</h2>

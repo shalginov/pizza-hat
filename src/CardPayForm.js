@@ -40,7 +40,7 @@ const figureOutVisaOrMasterCard = (value) => {
     return false
 }
 
-export const FormCardPay = ({ formSubmit }) => {
+export const CardPayForm = ({ formSubmit = (data = {}) => { console.log(data); } }) => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm()
     const cardNumber = register("cardNumber", {
         required: {

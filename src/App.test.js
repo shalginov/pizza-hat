@@ -1,12 +1,13 @@
 import { render, fireEvent } from '@testing-library/react';
 import { createMemoryHistory } from "history"
 import { Router } from "react-router-dom"
+import { act } from "react-dom/test-utils"
 import App from './App';
 
 const arrangeHistoryRouterWithApp = (history) => {
   return render(
     <Router history={history}  >
-      <App></App>
+      <App />
     </Router>
   )
 }
@@ -18,7 +19,6 @@ describe("App", () => {
       const { container, getByText } = arrangeHistoryRouterWithApp(history)
       expect(container.innerHTML).toMatch("Configure your pizza")
       fireEvent.click(getByText(/order for:/i))
-      // history.push("/pizza-checkouter")
       expect(container.innerHTML).toMatch("Check out your pizza")
     })
   })
@@ -35,14 +35,16 @@ describe("App", () => {
   })
 
   describe("on registration link click and on autorization link click", () => {
-    it("navigates to registration page and back to autorization page", () => {
+    it("navigates to registration page and back to autorization page", async () => {
       const history = createMemoryHistory()
       history.push("/login")
-      const { container, getByText, getByTestId } = arrangeHistoryRouterWithApp(history)
+      const { container, getByText, getByRole } = arrangeHistoryRouterWithApp(history)
       expect(container.innerHTML).toMatch("Authorization")
       fireEvent.click(getByText(/registration/i))
       expect(container.innerHTML).toMatch("Registration")
-      fireEvent.click(getByTestId("login-link"))
+      await act(async () => {
+        fireEvent.click(getByRole("button"))
+      })
       expect(container.innerHTML).toMatch("Authorization")
     })
   })
