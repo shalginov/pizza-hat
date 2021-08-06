@@ -1,10 +1,26 @@
-import { Link } from "react-router-dom"
+import { useForm } from "react-hook-form"
+import { useHistory } from "react-router"
 import { usePizzaContext } from "./PizzaContext"
 import { calculatePrice, DELIVERYCOST } from "./shared/utils"
 import { DeliveryForm } from "./DeliveryForm"
 
-export const CheckoutPizza = ({ formSubmit }) => {
+export const CheckoutPizza = ({ formSubmit = (data = {}) => console.log(data) }) => {
     const { pizza } = usePizzaContext()
+    const history = useHistory()
+
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        defaultValues: {
+            payMethod: "card"
+        }
+    })
+
+    const onSubmit = handleSubmit((data) => {
+        formSubmit(data)
+        console.log("delivery form data", data);
+        history.push("/pizza-order")
+    })
+
+
 
     return (
         <div>
@@ -19,13 +35,11 @@ export const CheckoutPizza = ({ formSubmit }) => {
                 </ul>
                 <p>Price: {calculatePrice(pizza)}</p>
             </fieldset>
-            <DeliveryForm />
+            <DeliveryForm register={register} />
             <fieldset>
                 <p>Pizza {calculatePrice(pizza)}</p>
                 <p>Delivery {DELIVERYCOST}</p>
-                <Link to="/pizza-order">
-                    <button>Pay: {DELIVERYCOST + calculatePrice(pizza)}</button>
-                </Link>
+                <button onClick={onSubmit}>Pay: {DELIVERYCOST + calculatePrice(pizza)}</button>
             </fieldset>
         </div>
     )

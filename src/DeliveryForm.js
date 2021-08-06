@@ -1,20 +1,7 @@
-import { useForm } from "react-hook-form"
-
-export const DeliveryForm = ({ formSubmit }) => {
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        defaultValues: {
-            payMethod: "card"
-        }
-    })
-
-    const onSubmit = (data) => {
-        formSubmit(data)
-        console.log("delivery form data", data);
-    }
-
+export const DeliveryForm = ({ register }) => {
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form>
             <fieldset>
                 <legend>Delivery address</legend>
                 <label>

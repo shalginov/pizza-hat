@@ -24,12 +24,14 @@ describe("App", () => {
   })
 
   describe("on submit button push on pizza checkouter page", () => {
-    it("navigates to pizza order page", () => {
+    it("navigates to pizza order page", async () => {
       const history = createMemoryHistory()
       history.push("/pizza-checkouter")
       const { container, getByText } = arrangeHistoryRouterWithApp(history)
       expect(container.innerHTML).toMatch("Check out your pizza")
-      fireEvent.click(getByText(/pay:/i))
+      await act(async () => {
+        fireEvent.click(getByText(/pay:/i))
+      })
       expect(container.innerHTML).toMatch("Thanks for order!")
     })
   })
