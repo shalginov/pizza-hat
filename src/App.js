@@ -1,38 +1,42 @@
 import { Route, Switch } from "react-router-dom";
 import { PizzaConfigurator } from "./PizzaConfigurator";
-import { PizzaCheckouter } from "./PizzaCheckouter";
-import { FormAuth } from "./FormAuth";
-import { FormRegistration } from "./FormRegistrartion";
+import { CheckoutPizza } from "./CheckoutPizza";
+import { AuthenticationPage } from "./AuthenticationPage";
+import { RegistrationForm } from "./RegistrationForm";
 import { PizzaOrder } from "./PizzaOrder";
 import { OrdersPage } from "./OrdersPage";
+import { CardPayForm } from "./CardPayForm"
 import { PageNotFound } from "./PageNotFound";
 
 function App() {
   return (
     <Switch>
       <Route exact path="/">
-        <PizzaConfigurator></PizzaConfigurator>
+        <PizzaConfigurator />
       </Route>
       <Route path="/login">
-        <FormAuth></FormAuth>
+        <AuthenticationPage />
       </Route>
       <Route path="/registration">
-        <FormRegistration></FormRegistration>
+        <RegistrationForm />
       </Route>
       <Route path="/pizza-configurator">
-        <PizzaConfigurator></PizzaConfigurator>
+        <PizzaConfigurator />
       </Route>
       <Route path="/pizza-checkouter">
-        <PizzaCheckouter></PizzaCheckouter>
+        <CheckoutPizza />
       </Route>
       <Route path="/pizza-order">
-        <PizzaOrder></PizzaOrder>
+        <PizzaOrder />
       </Route>
       <Route path="/orders">
-        <OrdersPage></OrdersPage>
+        <OrdersPage />
+      </Route>
+      <Route path="/card-pay">
+        <CardPayForm />
       </Route>
       <Route>
-        <PageNotFound></PageNotFound>
+        <PageNotFound />
       </Route>
     </Switch>
   );

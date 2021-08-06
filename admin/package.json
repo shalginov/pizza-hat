@@ -1,27 +1,21 @@
 {
-  "name": "pizza-hat",
+  "name": "admin",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@sentry/react": "^6.4.1",
-    "@sentry/tracing": "^6.4.1",
-    "@testing-library/jest-dom": "^5.12.0",
-    "@testing-library/react": "^11.2.6",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "history": "^4.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-hook-form": "^7.10.1",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "4.0.3",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "release": "(export REACT_APP_SENTRY_RELEASE=$(git rev-parse --short=12 HEAD); react-scripts build)"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
