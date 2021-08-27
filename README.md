@@ -1,7 +1,7 @@
 #Pizza orders app
-#How to start
 '''
 install dependencies
+npm run start in develop mode
+npm run build to biuld the app
 '''
-Разработанно на React.
-Запуск npm i, в режиме разработчика npm run start
+Developed with React
